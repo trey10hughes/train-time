@@ -18,7 +18,7 @@ $("#add-train").on("click", function(){
 	console.log("button clicked");
 	var name = $("#name-input").val().trim();
 	var destination = $("#destination-input").val().trim();
-	var firstTrainTime = $("#first-time-input").val().trim();
+	var firstTrainTime = moment($("#first-time-input").val().trim(), "HH:mm").format("HH:mm");
 	var frequency = $("#frequency-input").val().trim();
 
 	var train = {
@@ -37,11 +37,37 @@ $("#add-train").on("click", function(){
 
 database.ref().on("child_added", function(snapshot) {
 
+	//calculate the values for next arrival time and minutes away using moment.js
+	var tFrequency = snapshot.val().frequency;
+	var firstTime = snapshot.val().firstTrainTime;
+
+	//first time
+	var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+
+	//current time
+	var currentTime = moment();
+
+	//difference between times
+	var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+
+	//time apart
+	var tRemainder = diffTime % tFrequency;
+
+	//minutes till next train
+	var tMinutesTillTrain = tFrequency - tRemainder;
+
+	//next train time
+	var nextTrain = moment().add(tMinutesTillTrain, "minutes").format("HH:mm");
+
+
+
 	var $tableRow = $("<tr>"); //create a blank table row
 
 	$tableRow.append("<td>" + snapshot.val().name + "</td>");
 	$tableRow.append("<td>" + snapshot.val().destination + "</td>");
 	$tableRow.append("<td>" + snapshot.val().frequency + "</td>"); 
+	$tableRow.append("<td>" + nextTrain + "</td>");
+	$tableRow.append("<td>" + tMinutesTillTrain + "</td>"); 
 	//append <td> elements with values from the snapshot to the $tableRow
 	$("tbody").append($tableRow);  
 }, function(errorObject) {
