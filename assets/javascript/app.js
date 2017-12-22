@@ -35,4 +35,17 @@ $("#add-train").on("click", function(){
 
 });
 
+database.ref().on("child_added", function(snapshot) {
+
+	var $tableRow = $("<tr>"); //create a blank table row
+
+	$tableRow.append("<td>" + snapshot.val().name + "</td>");
+	$tableRow.append("<td>" + snapshot.val().destination + "</td>");
+	$tableRow.append("<td>" + snapshot.val().frequency + "</td>"); 
+	//append <td> elements with values from the snapshot to the $tableRow
+	$("tbody").append($tableRow);  
+}, function(errorObject) {
+  console.log("The read failed: " + errorObject.code);
+});
+
 });
