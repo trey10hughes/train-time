@@ -2,7 +2,8 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -12,17 +13,17 @@
 
     <title>Train Time</title>
   </head>
+
   <body>
-      <div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-3">Train Arrivals</h1>
-  
-  </div>
-</div>
+      <div class="jumbotron jumbotron-fluid" id="jumbo">
+        <div class="container">
+          <h1 class="display-3">Train Arrivals</h1> 
+        </div>
+      </div>
 <div class="row">
-        <div class="col-lg-12">
+        <div class="col-md-12">
           <div class="panel panel-default">
-            <div class="panel-heading">
+            <div class="panel-heading" id="top-panel-1">
               <h3 class="panel-title">Current Train Schedule</h3>
             </div>
             <div class="panel-body" id="">
@@ -46,15 +47,15 @@
           </div>
         </div>
 
-  </div>
-<div class="col-lg-6">
+</div>
+
+<div class="col-md-12">
         <div class="panel panel-default">
-          <div class="panel-heading">
+          <div class="panel-heading" id="top-panel-2">
             <h3 class="panel-title">Add Train</h3>
           </div>
           <div class="panel-body">
 
-           <!-- Sign-up Form (note the various input "types")-->
             <form role="form">
               <div class="form-group">
                 <label for="name-input">Train Name</label>
@@ -72,11 +73,11 @@
                 <label for="comment-input">Frequency (min)</label>
                 <input class="form-control" id="frequency-input" type="number">
               </div>
-              <button class="btn btn-default" id="add-train" type="submit">Submit</button>
+              <button class="btn btn-info" id="add-train" type="submit">Submit</button>
             </form>
           </div>
         </div>
-      </div>
+</div>
   <script src="assets/javascript/app.js"></script>
  </body>
 </html>
